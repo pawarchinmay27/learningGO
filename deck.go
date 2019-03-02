@@ -2,6 +2,7 @@ package main
 
 import ("fmt"
 		"strings"
+		"io/ioutil"
 )
 
 type deck []string
@@ -12,7 +13,7 @@ func newDeck() deck {
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 	for _, cardSuit := range cardSuits {
 		for _, cardValue := range cardValues {
-			cards = append(cards, cardValue+"of"+cardSuit)
+			cards = append(cards, cardValue+" of "+cardSuit)
 		}
 	}
 	return cards
@@ -36,4 +37,12 @@ func (d deck) toString()(string){
 	//joins  every string in slice with the give sep and returns a single string
 	return strings.Join([]string(d),",")
 
+}
+
+
+//error is built in type
+func (d deck) saveToFile(fileName string) error{
+	//WriteFile takes bytes as an arg hence type cast string to []byte
+	//0666 is the permission to the file
+	return ioutil.WriteFile(fileName,[]byte(d.toString()),0666)
 }

@@ -1,14 +1,8 @@
 package main
-
+import _"fmt"
 func main() {
-	cards := newDeck()
-	/*cards.print()
-	hand,remainingDeck:=deal(cards,5)
-	hand.print()
-	remainingDeck.print()
-	*/
 	cards:=newDeck()
-	fmt.Println(cards.toString())
+	cards.saveToFile("my_cards")
 }
 func getNewCard() string {
 	return "Ace Of Spades"
