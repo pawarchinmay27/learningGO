@@ -4,6 +4,8 @@ import ("fmt"
 		"strings"
 		"io/ioutil"
 		"os"
+		"math/rand"
+		"time"
 )
 
 type deck []string
@@ -60,3 +62,14 @@ func newDeckFromFile(fileName string)(deck){
 	return deck(s)
 		 
 }
+
+
+func (d deck) shuffle(){
+	//refer seeding in rand before this
+	source:=rand.NewSource(time.Now().UnixNano())
+	r:=rand.New(source)
+	for index:= range d{
+		newPosition:=r.Intn(len(d)-1)
+		d[index],d[newPosition]=d[newPosition],d[index]
+	}
+} 

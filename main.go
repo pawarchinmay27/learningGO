@@ -1,7 +1,9 @@
 package main
 import _"fmt"
 func main() {
-	cards:=newDeckFromFile("my_cards")
+	cards:=newDeck()
+	cards.print()
+	cards.shuffle()
 	cards.print()
 }
 func getNewCard() string {
