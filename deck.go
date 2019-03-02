@@ -3,6 +3,7 @@ package main
 import ("fmt"
 		"strings"
 		"io/ioutil"
+		"os"
 )
 
 type deck []string
@@ -45,4 +46,17 @@ func (d deck) saveToFile(fileName string) error{
 	//WriteFile takes bytes as an arg hence type cast string to []byte
 	//0666 is the permission to the file
 	return ioutil.WriteFile(fileName,[]byte(d.toString()),0666)
+}
+
+func newDeckFromFile(fileName string)(deck){
+	bs,err:=ioutil.ReadFile(fileName)
+	if err!=nil{
+		fmt.Println("Error:\n",err)
+		//exits the code gracefully 
+		os.Exit(-1)
+	}
+	jointString:=string(bs)
+	s:=strings.Split(jointString,",")
+	return deck(s)
+		 
 }
