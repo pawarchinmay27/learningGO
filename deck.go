@@ -1,4 +1,6 @@
-package main
+package func main() {
+	
+}
 
 import ("fmt"
 		"strings"
